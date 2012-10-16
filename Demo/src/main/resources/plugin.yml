@@ -21,3 +21,7 @@ permissions:
         description: give the player a block of cake
       demo.kick:
         description: kick the specified player out of the game
+      demo.damage:
+        description: shows how much damage was dealt wit what
+      demo.prepare:
+        description: equip yourself

@@ -2,12 +2,18 @@ package edu.unca.rbruce.Demo;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
+
+import java.util.logging.Logger;
+
 
 import com.google.common.base.Joiner;
 
@@ -52,6 +58,24 @@ public class DemoCommandExecutor implements CommandExecutor {
 			this.plugin.getConfig().set("sample.message",
 					Joiner.on(' ').join(args));
 			return true;
+		} else if (args[0].equalsIgnoreCase("damage") 
+				&& sender.hasPermission("demo.damage")) {				
+				Player fred = (Player) sender;
+				ItemStack weapon = fred.getItemInHand();	
+				Material type = weapon.getType();
+				sender.sendMessage(ChatColor.RED + "You just did damage with " + type);
+				plugin.logger.info("Weapon = " + weapon);									
+				return true;
+		} else if (args[0].equalsIgnoreCase("prepare") 
+				&& sender.hasPermission("demo.prepare")) {			
+				Player fred = (Player) sender;
+				int itemCode = 276;
+				ItemStack myItem = new ItemStack(itemCode);
+				sender.sendMessage(ChatColor.RED + "Warning: The first item in your inventory just got deleted!");
+				fred.setItemInHand(myItem);
+				plugin.logger.info("Successfully ran 'prepare'");	
+			return true;
+			
 		} else if (args[0].equalsIgnoreCase("kick")
 				&& sender.hasPermission("demo.kick")) {
 			Player fred = plugin.getServer().getPlayer(args[1]);
