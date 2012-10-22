@@ -69,10 +69,13 @@ public class DemoCommandExecutor implements CommandExecutor {
 		} else if (args[0].equalsIgnoreCase("prepare") 
 				&& sender.hasPermission("demo.prepare")) {			
 				Player fred = (Player) sender;
-				int itemCode = 276;
+				int itemCode = 261;
+				int itemCode2 = 262;
 				ItemStack myItem = new ItemStack(itemCode);
+				ItemStack myItem2 = new ItemStack(itemCode2);
 				sender.sendMessage(ChatColor.RED + "Warning: The first item in your inventory just got deleted!");
 				fred.setItemInHand(myItem);
+				fred.getInventory().addItem(myItem2);
 				plugin.logger.info("Successfully ran 'prepare'");	
 			return true;
 			
