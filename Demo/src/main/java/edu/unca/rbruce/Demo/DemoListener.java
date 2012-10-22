@@ -2,11 +2,18 @@ package edu.unca.rbruce.Demo;
 
 import java.text.MessageFormat;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 /*
  * This is a sample event listener
@@ -46,4 +53,17 @@ public class DemoListener implements Listener {
                 entityType.getName(),
                 entityType.getTypeId()));
     }
+	@EventHandler(priority = EventPriority.LOW)
+	public void tntevent(PlayerInteractEvent tnt) {
+		Player jim = tnt.getPlayer();
+		if (tnt.getAction() == Action.LEFT_CLICK_BLOCK && jim.getItemInHand().getType() == Material.DIAMOND_SWORD) {
+			Block b = tnt.getClickedBlock();
+			if (b != null) {
+				Location loc = b.getLocation();
+				loc.getWorld().createExplosion(loc, 1, true) ;
+				tnt.getPlayer().sendMessage("You have exploded the ground in front of you!");
+				plugin.logger.info(tnt.getPlayer() + " created an explosion at  " + loc);
+			}
+		}
+	}
 }
