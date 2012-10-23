@@ -1,4 +1,4 @@
-package edu.unca.rbruce.Demo;
+package edu.unca.mpsolle.Demo;
 
 import java.util.logging.Logger;
 

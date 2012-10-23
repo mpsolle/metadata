@@ -1,6 +1,6 @@
 # This is a sample plugin.yml
 # For more information refer to http://wiki.bukkit.org/Plugin_YAML
-main: edu.unca.rbruce.Demo.Demo
+main: edu.unca.mpsolle.Demo.Demo
 name: Demo
 version: ${project.version}
 author: SampleAuthor

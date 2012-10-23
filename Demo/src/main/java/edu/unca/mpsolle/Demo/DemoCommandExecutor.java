@@ -1,4 +1,4 @@
-package edu.unca.rbruce.Demo;
+package edu.unca.mpsolle.Demo;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -71,11 +71,14 @@ public class DemoCommandExecutor implements CommandExecutor {
 				Player fred = (Player) sender;
 				int itemCode = 261;
 				int itemCode2 = 262;
+				int itemCode3 = 276;
 				ItemStack myItem = new ItemStack(itemCode);
-				ItemStack myItem2 = new ItemStack(itemCode2);
+				ItemStack myItem3 = new ItemStack(itemCode3);
+				ItemStack myItem2 = new ItemStack(itemCode2, 64);
 				sender.sendMessage(ChatColor.RED + "Warning: The first item in your inventory just got deleted!");
 				fred.setItemInHand(myItem);
 				fred.getInventory().addItem(myItem2);
+				fred.getInventory().addItem(myItem3);
 				plugin.logger.info("Successfully ran 'prepare'");	
 			return true;
 			

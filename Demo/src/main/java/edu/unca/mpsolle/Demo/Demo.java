@@ -1,4 +1,4 @@
-package edu.unca.rbruce.Demo;
+package edu.unca.mpsolle.Demo;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
