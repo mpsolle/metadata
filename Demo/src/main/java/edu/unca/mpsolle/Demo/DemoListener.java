@@ -44,6 +44,7 @@ public class DemoListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage(this.plugin.getConfig().getString("sample.message"));
+    	plugin.setMetadata(event.getPlayer(), "prepare", false, plugin);
     }
     
     /*
@@ -81,7 +82,7 @@ public class DemoListener implements Listener {
 	public void arrowEvent(ProjectileHitEvent arrow) {
 		Player jim = (Player) arrow.getEntity().getShooter();
 		
-		if (arrow.getEntityType() == EntityType.ARROW){
+		if (arrow.getEntityType() == EntityType.ARROW ){
 				Location loc = arrow.getEntity().getLocation();
 				jim.sendMessage("You are now where your arrow fell!");
 				plugin.logger.info(arrow.getEntity().getShooter() + " shot an arrow to  " + loc);

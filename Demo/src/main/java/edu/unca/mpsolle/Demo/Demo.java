@@ -1,5 +1,10 @@
 package edu.unca.mpsolle.Demo;
 
+import java.util.List;
+
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /*
@@ -10,6 +15,7 @@ public class Demo extends JavaPlugin {
 	 * This is called when your plug-in is enabled
 	 */
 	DemoLogger logger;
+	DemoCommandExecutor executor;
 
 	@Override
 	public void onEnable() {
@@ -35,5 +41,30 @@ public class Demo extends JavaPlugin {
 		logger.info("plugin disabled");
 
 	}
+	
+	/*
+	 * Basic Metadata setup
+	 */
+	
+	//Allows the ability to set what is in the meta data field
+	public void setMetadata(Player player, String key, Object value,
+			Demo plugin) {
+		player.setMetadata(key, new FixedMetadataValue(plugin, value));
+	}
+	
+	//Allows the retrieval of Metadata information
+	public Object getMetadata(Player player, String key, Demo plugin) {
+		List<MetadataValue> values = player.getMetadata(key);
+		for (MetadataValue value : values) {
+			if (value.getOwningPlugin().getDescription().getName()
+					.equals(plugin.getDescription().getName())) {
+				return (value.asBoolean());
+			}
+		}
+		return null;
+	}
 
-}
+		// TODO Auto-generated method stub
+		
+	}
+

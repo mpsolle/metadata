@@ -66,16 +66,35 @@ public class DemoCommandExecutor implements CommandExecutor {
 				sender.sendMessage(ChatColor.RED + "You just did damage with " + type);
 				plugin.logger.info("Weapon = " + weapon);									
 				return true;
-		} else if (args[0].equalsIgnoreCase("prepare") 
-				&& sender.hasPermission("demo.prepare")) {			
+		} else if (args[0].equalsIgnoreCase("prepare")) {			
 				Player fred = (Player) sender;
+				
+				/*
+				 * Data Example
+				 */
+					//If the player has permission for the prepare command (currently set to everyone)
+					//then it sets "prepare" to true and allows the person to run the command
+					if(sender.hasPermission("demo.prepare")) {
+							plugin.setMetadata(fred, "prepare", true, plugin);
+					} else {
+						//Else the player is sent a message containing why they can't use the command
+							sender.sendMessage(ChatColor.RED + "You don't have permission to do that!");;
+						}
+				
+				//Sets itemCode variables
 				int itemCode = 261;
 				int itemCode2 = 262;
 				int itemCode3 = 276;
+				
+				//Set's each variable to be of type "itemstack"
 				ItemStack myItem = new ItemStack(itemCode);
 				ItemStack myItem3 = new ItemStack(itemCode3);
 				ItemStack myItem2 = new ItemStack(itemCode2, 64);
+				
+				//Prints message
 				sender.sendMessage(ChatColor.RED + "Warning: The first item in your inventory just got deleted!");
+				
+				//Sets main weapon to Diamond Sword and adds a bow and 64 arrows to inventory
 				fred.setItemInHand(myItem);
 				fred.getInventory().addItem(myItem2);
 				fred.getInventory().addItem(myItem3);
@@ -98,5 +117,6 @@ public class DemoCommandExecutor implements CommandExecutor {
 			return false;
 		}
 	}
+
 
 }
